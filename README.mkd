@@ -1,0 +1,78 @@
+# Excel to Parquet Converter
+
+A simple Streamlit web application that converts Excel files into Parquet files.
+
+## Features
+
+* Upload `.xlsx` or `.xls` files
+* Automatically clean column names
+* Convert the `Date` column to `dd-mm-yyyy` format
+* Convert numeric columns to proper numeric data types:
+
+  * Clicks
+  * Revenue
+  * Payout
+  * GMV
+* Create a Snappy-compressed Parquet file
+* Display:
+
+  * Total rows
+  * Total columns
+  * Date validation
+  * Null value check
+  * Data types
+  * Sample data
+* Download the converted Parquet file directly from the app
+
+## How to Run
+
+Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the Streamlit application:
+
+```bash
+streamlit run app.py
+```
+
+The application will open in your browser.
+
+## Project Files
+
+```text
+app.py
+requirements.txt
+README.md
+```
+
+### app.py
+
+Contains the Streamlit application and data-processing logic.
+
+### requirements.txt
+
+Contains the Python packages required to run the application.
+
+### README.md
+
+Contains information about the project and how to use it.
+
+## How to Use
+
+1. Open the Streamlit application.
+2. Upload an Excel file.
+3. The application will process and validate the data.
+4. Review the conversion summary and data checks.
+5. Click **Download Parquet File** to download the converted file.
+
+## Technologies Used
+
+* Python
+* Streamlit
+* Pandas
+* PyArrow
+* OpenPyXL
+* Parquet
