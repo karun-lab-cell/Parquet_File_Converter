@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import pandas as pd
 import pyarrow as pa
@@ -610,4 +609,3 @@ else:
             Download the optimized `.parquet` file.
             """
         )
-```
