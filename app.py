@@ -17,71 +17,198 @@ st.set_page_config(
 )
 
 # ============================================================
-# CUSTOM CSS
+# CUSTOM CSS - LIGHT + DARK MODE COMPATIBLE
 # ============================================================
 
 st.markdown("""
 <style>
 
-    /* Main background */
+    /* ========================================================
+       GLOBAL
+       ======================================================== */
+
     .stApp {
-        background-color: #f7f9fc;
+        background-color: var(--background-color);
+        color: var(--text-color);
     }
 
-    /* Main title */
+    /* ========================================================
+       MAIN TITLE
+       ======================================================== */
+
     .main-title {
         font-size: 38px;
         font-weight: 700;
         margin-bottom: 5px;
+        color: var(--text-color);
     }
 
     .subtitle {
         font-size: 16px;
-        color: #6b7280;
+        color: var(--secondary-text-color);
         margin-bottom: 25px;
     }
 
-    /* KPI cards */
+    /* ========================================================
+       KPI CARDS
+       ======================================================== */
+
     .kpi-card {
-        background: white;
+        background-color: var(--secondary-background-color);
         padding: 20px;
         border-radius: 12px;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0px 2px 8px rgba(0,0,0,0.04);
+        border: 1px solid var(--border-color);
+        box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+        min-height: 105px;
     }
 
     .kpi-title {
         font-size: 14px;
-        color: #6b7280;
+        color: var(--secondary-text-color);
         margin-bottom: 5px;
     }
 
     .kpi-value {
         font-size: 28px;
         font-weight: 700;
+        color: var(--text-color);
+        word-break: break-word;
     }
 
-    /* Section headers */
+    /* ========================================================
+       SECTION HEADERS
+       ======================================================== */
+
     .section-title {
         font-size: 22px;
         font-weight: 600;
         margin-top: 20px;
         margin-bottom: 10px;
+        color: var(--text-color);
     }
 
-    /* Upload box */
+    /* ========================================================
+       UPLOAD BOX
+       ======================================================== */
+
     [data-testid="stFileUploader"] {
-        background-color: white;
+        background-color: var(--secondary-background-color);
         padding: 15px;
         border-radius: 12px;
-        border: 1px solid #dfe3e8;
+        border: 1px solid var(--border-color);
     }
 
-    /* Download button */
+    /* File uploader text */
+    [data-testid="stFileUploader"] label {
+        color: var(--text-color) !important;
+    }
+
+    [data-testid="stFileUploader"] section {
+        background-color: var(--secondary-background-color);
+        border-color: var(--border-color);
+    }
+
+    [data-testid="stFileUploader"] small {
+        color: var(--secondary-text-color) !important;
+    }
+
+    /* ========================================================
+       SIDEBAR
+       ======================================================== */
+
+    [data-testid="stSidebar"] {
+        background-color: var(--secondary-background-color);
+    }
+
+    [data-testid="stSidebar"] * {
+        color: var(--text-color);
+    }
+
+    /* ========================================================
+       BUTTONS
+       ======================================================== */
+
     .stDownloadButton button {
         width: 100%;
         border-radius: 8px;
         font-weight: 600;
+    }
+
+    /* ========================================================
+       METRICS
+       ======================================================== */
+
+    [data-testid="stMetric"] {
+        background-color: var(--secondary-background-color);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+    }
+
+    [data-testid="stMetricLabel"] {
+        color: var(--secondary-text-color) !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: var(--text-color) !important;
+    }
+
+    [data-testid="stMetricDelta"] {
+        color: var(--text-color) !important;
+    }
+
+    /* ========================================================
+       DATAFRAME
+       ======================================================== */
+
+    [data-testid="stDataFrame"] {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+
+    /* ========================================================
+       TABS
+       ======================================================== */
+
+    button[data-baseweb="tab"] {
+        color: var(--text-color) !important;
+    }
+
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: var(--text-color) !important;
+    }
+
+    /* ========================================================
+       SLIDER
+       ======================================================== */
+
+    [data-testid="stSlider"] {
+        color: var(--text-color);
+    }
+
+    /* ========================================================
+       ALERTS / INFO BOXES
+       ======================================================== */
+
+    [data-testid="stAlert"] {
+        border-radius: 8px;
+    }
+
+    /* ========================================================
+       MARKDOWN / TEXT
+       ======================================================== */
+
+    .stMarkdown,
+    .stText,
+    p,
+    span,
+    label {
+        color: var(--text-color);
+    }
+
+    /* Don't override icons */
+    svg {
+        color: inherit;
     }
 
 </style>
@@ -119,11 +246,11 @@ with st.sidebar:
 
     st.markdown("""
     **CSV**
-    
+
     `.csv`
 
     **Excel**
-    
+
     `.xlsx`
     """)
 
@@ -227,6 +354,7 @@ if uploaded_file is not None:
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
+
             st.markdown(
                 f"""
                 <div class="kpi-card">
@@ -240,6 +368,7 @@ if uploaded_file is not None:
             )
 
         with col2:
+
             st.markdown(
                 f"""
                 <div class="kpi-card">
@@ -253,6 +382,7 @@ if uploaded_file is not None:
             )
 
         with col3:
+
             st.markdown(
                 f"""
                 <div class="kpi-card">
@@ -266,6 +396,7 @@ if uploaded_file is not None:
             )
 
         with col4:
+
             st.markdown(
                 f"""
                 <div class="kpi-card">
@@ -292,22 +423,30 @@ if uploaded_file is not None:
 
         status_text = st.empty()
 
+
         # ----------------------------------------------------
         # STEP 1
         # ----------------------------------------------------
 
-        status_text.info("Step 1/4 — Cleaning column names...")
+        status_text.info(
+            "Step 1/4 — Cleaning column names..."
+        )
+
         progress_bar.progress(25)
 
         df.columns = df.columns.str.strip()
 
         time.sleep(0.2)
 
+
         # ----------------------------------------------------
         # STEP 2 - DATE
         # ----------------------------------------------------
 
-        status_text.info("Step 2/4 — Processing date columns...")
+        status_text.info(
+            "Step 2/4 — Processing date columns..."
+        )
+
         progress_bar.progress(50)
 
         if "Date" in df.columns:
@@ -320,11 +459,15 @@ if uploaded_file is not None:
 
         time.sleep(0.2)
 
+
         # ----------------------------------------------------
         # STEP 3 - NUMERIC COLUMNS
         # ----------------------------------------------------
 
-        status_text.info("Step 3/4 — Converting numeric columns...")
+        status_text.info(
+            "Step 3/4 — Converting numeric columns..."
+        )
+
         progress_bar.progress(75)
 
         numeric_columns = [
@@ -349,11 +492,15 @@ if uploaded_file is not None:
 
         time.sleep(0.2)
 
+
         # ----------------------------------------------------
         # STEP 4 - PARQUET
         # ----------------------------------------------------
 
-        status_text.info("Step 4/4 — Creating Parquet file...")
+        status_text.info(
+            "Step 4/4 — Creating Parquet file..."
+        )
+
         progress_bar.progress(90)
 
         output_file = (
@@ -374,7 +521,10 @@ if uploaded_file is not None:
 
         progress_bar.progress(100)
 
-        status_text.success("🎉 Processing completed!")
+        status_text.success(
+            "🎉 Processing completed!"
+        )
+
 
         # ====================================================
         # RESULTS
@@ -385,19 +535,22 @@ if uploaded_file is not None:
             unsafe_allow_html=True
         )
 
-        output_size_mb = os.path.getsize(output_file) / (
-            1024 * 1024
+        output_size_mb = (
+            os.path.getsize(output_file)
+            / (1024 * 1024)
         )
 
         result_col1, result_col2, result_col3 = st.columns(3)
 
         with result_col1:
+
             st.metric(
                 "Original Size",
                 f"{file_size_mb:.2f} MB"
             )
 
         with result_col2:
+
             st.metric(
                 "Parquet Size",
                 f"{output_size_mb:.2f} MB"
@@ -451,6 +604,7 @@ if uploaded_file is not None:
             ]
         )
 
+
         # ----------------------------------------------------
         # TAB 1 - DATA PREVIEW
         # ----------------------------------------------------
@@ -459,11 +613,13 @@ if uploaded_file is not None:
 
             st.subheader("Data Preview")
 
+            max_rows = max(5, min(100, len(df)))
+
             preview_rows = st.slider(
                 "Number of rows to preview",
                 min_value=5,
-                max_value=min(100, len(df)),
-                value=min(10, len(df)),
+                max_value=max_rows,
+                value=min(10, max_rows),
                 step=5
             )
 
@@ -483,19 +639,24 @@ if uploaded_file is not None:
             st.subheader("Column Information")
 
             column_info = pd.DataFrame({
+
                 "Column": df.columns,
+
                 "Data Type": [
                     str(dtype)
                     for dtype in df.dtypes
                 ],
+
                 "Non-Null Values": [
                     df[col].notna().sum()
                     for col in df.columns
                 ],
+
                 "Null Values": [
                     df[col].isna().sum()
                     for col in df.columns
                 ]
+
             })
 
             st.dataframe(
@@ -546,14 +707,28 @@ if uploaded_file is not None:
 
         with summary_col1:
 
-            st.write("**File Type:**", file_extension.upper())
-            st.write("**Output Format:**", "Parquet")
-            st.write("**Compression:**", "Snappy")
+            st.write(
+                "**File Type:**",
+                file_extension.upper()
+            )
+
+            st.write(
+                "**Output Format:**",
+                "Parquet"
+            )
+
+            st.write(
+                "**Compression:**",
+                "Snappy"
+            )
 
         with summary_col2:
 
             if "Date" in df.columns:
-                st.write("📅 Date column converted to DD-MM-YYYY")
+
+                st.write(
+                    "📅 Date column converted to DD-MM-YYYY"
+                )
 
             if converted_columns:
 
@@ -572,6 +747,7 @@ if uploaded_file is not None:
             f"❌ Error while processing the file: {str(e)}"
         )
 
+
 else:
 
     # ========================================================
@@ -587,25 +763,31 @@ else:
     step1, step2, step3 = st.columns(3)
 
     with step1:
+
         st.markdown(
             """
             ### 1️⃣ Upload
+
             Upload your `.csv` or `.xlsx` file.
             """
         )
 
     with step2:
+
         st.markdown(
             """
             ### 2️⃣ Process
+
             The tool automatically cleans and converts your data.
             """
         )
 
     with step3:
+
         st.markdown(
             """
             ### 3️⃣ Download
+
             Download the optimized `.parquet` file.
             """
         )
